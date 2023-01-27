@@ -1,4 +1,4 @@
-package main
+package Stack
 
 import "fmt"
 
@@ -10,7 +10,7 @@ func NewStack[T any]() *Stack[T] {
 	return &Stack[T]{}
 }
 
-func (stack *Stack[T]) push(value T) {
+func (stack *Stack[T]) Push(value T) {
 	stack.values = append(stack.values, value)
 }
 func (stack *Stack[T]) Top() (T, error) {
@@ -22,13 +22,10 @@ func (stack *Stack[T]) Top() (T, error) {
 }
 
 func (stack *Stack[T]) IsEmpty() bool {
-	if len(stack.values) == 0 {
-		return true
-	}
-	return false
+	return len(stack.values) == 0
 }
 
-func (stack *Stack[T]) pop() (T, error) {
+func (stack *Stack[T]) Pop() (T, error) {
 	var value T
 	if stack.IsEmpty() {
 		return value, fmt.Errorf("Stack is empty")

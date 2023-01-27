@@ -1,15 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"main/stack"
+)
 
 func main() {
-	stack := NewStack[int]()
-	stack.push(1)
-	stack.push(2)
+	stack := Stack.NewStack[int]()
+	stack.Push(1)
+	stack.Push(2)
 	fmt.Println(stack.Top())
-	stack.push(3)
-	stack.push(4)
+	stack.Push(3)
+	stack.Push(4)
+
 	fmt.Println(stack.Top())
-	fmt.Println(stack.pop())
-	fmt.Println(stack.pop())
+	fmt.Println(stack.Pop())
+	fmt.Println(stack.Pop())
 }
+

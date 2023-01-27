@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"main/stack"
+	Stack "main/stack"
 )
 
 func main() {
@@ -17,4 +17,3 @@ func main() {
 	fmt.Println(stack.Pop())
 	fmt.Println(stack.Pop())
 }
-

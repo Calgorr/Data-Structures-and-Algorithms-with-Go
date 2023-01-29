@@ -18,10 +18,10 @@ func main() {
 	q.Enqueue(0)
 	visited[0] = true
 	rDist[0] = 0
-	bfs(Graph, visited, rDist, 0)
+	bfs(Graph, visited, rDist, q)
 }
 
-func bfs(Graph [][]int, visited [5]bool, rDist [5]int, q Queue.Queue[int]) {
+func bfs(Graph [][]int, visited [5]bool, rDist [5]int, q *Queue.Queue[int]) {
 	if q.IsEmpty() {
 		return
 	}

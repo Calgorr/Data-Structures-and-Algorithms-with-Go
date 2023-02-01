@@ -34,6 +34,7 @@ func dfsVisit(graph [][]int, root int) {
 			fmt.Printf("%v ", v2)
 			parent[v2] = root
 			dfsVisit(graph, v2)
+
 		}
 	}
 	visited[root] = 2

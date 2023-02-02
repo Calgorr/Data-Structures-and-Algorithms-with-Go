@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	Stack "main/stack"
+
+	Stack "github.com/Calgorr/Data-Structures-and-Algorithms-with-Go/ElementaryDataStructures/stack/stack"
 )
 
 func main() {

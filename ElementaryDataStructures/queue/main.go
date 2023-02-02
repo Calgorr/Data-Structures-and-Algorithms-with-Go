@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	Queue "main/queue"
+
+	Queue "github.com/Calgorr/Data-Structures-and-Algorithms-with-Go/ElementaryDataStructures/queue/queue"
 )
 
 func main() {

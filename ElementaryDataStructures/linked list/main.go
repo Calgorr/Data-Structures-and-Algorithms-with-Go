@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	LinkedList "main/linkedlist"
+
+	LinkedList "github.com/Calgorr/Data-Structures-and-Algorithms-with-Go/ElementaryDataStructures/linkedlist/linkedlist"
 )
 
 func main() {

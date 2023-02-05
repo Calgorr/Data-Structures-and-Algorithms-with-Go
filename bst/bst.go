@@ -2,16 +2,12 @@ package bst
 
 import "fmt"
 
-type node[V comparable] struct {
-	value                         V
-	leftChild, rightChild, parent *node[V]
+type node struct {
+	value                         int
+	leftChild, rightChild, parent *node
 }
 
-func main() {
-
-}
-
-func (x *node[V]) InOrder_Tree_Walk() {
+func (x *node) InOrder_Tree_Walk() {
 	if x != nil {
 		x.leftChild.InOrder_Tree_Walk()
 		fmt.Println(x.value)
@@ -19,14 +15,61 @@ func (x *node[V]) InOrder_Tree_Walk() {
 	}
 }
 
-func (x *node[V]) PreOrder_Tree_Walk() {
+func (x *node) PreOrder_Tree_Walk() {
 	fmt.Println(x.value)
 	x.leftChild.PreOrder_Tree_Walk()
 	x.rightChild.PreOrder_Tree_Walk()
 }
 
-func (x *node[V]) PostOrder_Tree_Walk() {
+func (x *node) PostOrder_Tree_Walk() {
 	x.leftChild.PostOrder_Tree_Walk()
 	x.rightChild.PostOrder_Tree_Walk()
 	fmt.Println(x.value)
+}
+
+func (x *node) RecursiveSearch(k int) *node {
+	if x == nil || x.value == k {
+		return x
+	} else if x.value < k {
+		x.rightChild.RecursiveSearch(k)
+	}
+	x.leftChild.RecursiveSearch(k)
+	return nil
+}
+
+func (x *node) IterativeSearch(k int) *node {
+	for x != nil || x.value != k {
+		if x.value > k {
+			x = x.leftChild
+		} else {
+			x = x.rightChild
+		}
+	}
+	return x
+}
+
+func (x *node) Minumum() *node {
+	for x != nil {
+		x = x.leftChild
+	}
+	return x
+}
+
+func (x *node) Maximum() *node {
+	for x != nil {
+		x = x.rightChild
+	}
+	return x
+}
+
+func (x *node) Tree_Successor() *node {
+	if x.rightChild != nil {
+		return x.Minumum()
+	}
+	y := x.parent
+	for x == y.rightChild || y != nil {
+		x = y
+		y = x.parent
+	}
+	return y
 }

@@ -1,6 +1,8 @@
 package bst
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type node struct {
 	value                         int
@@ -72,4 +74,26 @@ func (x *node) Tree_Successor() *node {
 		y = x.parent
 	}
 	return y
+}
+func Tree_Insert(root, z *node) {
+	if root == nil {
+		root = z
+		return
+	}
+	x, y := root, &node{}
+	for x != nil {
+		y = x
+		if z.value > x.value {
+			x = x.rightChild
+		} else {
+			x = x.leftChild
+		}
+	}
+	z.parent = y
+	if z.value > y.value {
+		y.rightChild = z
+	} else {
+		y.leftChild = z
+	}
+
 }

@@ -97,3 +97,29 @@ func Tree_Insert(root, z *node) {
 	}
 
 }
+
+func Transplant(root, u, v *node) {
+	if u.parent == nil {
+		root = v
+		return
+	}
+	if u == u.parent.leftChild {
+		u.parent.leftChild = v
+	} else {
+		u.parent.rightChild = v
+	}
+	if v != nil {
+		v.parent = u.parent
+	}
+
+}
+
+func Deletion(root, v *node) {
+	if v.leftChild == nil {
+		Transplant(root, v, v.rightChild)
+	} else if v.leftChild == nil {
+		Transplant(root, v, v.rightChild)
+	} else {
+
+	}
+}

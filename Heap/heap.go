@@ -13,3 +13,10 @@ func MaxHeapify(heap []int, heap_size, index int) {
 		MaxHeapify(heap, heap_size, largest)
 	}
 }
+
+func Build_Max_Heap(heap []int) {
+	len := len(heap)
+	for i := len / 2; i >= 0; len-- {
+		MaxHeapify(heap, len, i)
+	}
+}

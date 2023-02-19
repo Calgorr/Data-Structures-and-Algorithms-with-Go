@@ -31,3 +31,8 @@ func HeapIncreaseKey(heap []int, i, key int) {
 		i = (i - 1) / 2
 	}
 }
+
+func MaxHeapInsert(heap []int, key int) {
+	heap = append(heap, -1)
+	HeapIncreaseKey(heap, len(heap)-1, key)
+}

@@ -22,3 +22,12 @@ func HeapExtractMax(heap []int) Number {
 	Heap.MaxHeapify(heap, len(heap), 0)
 	return max
 }
+
+func HeapIncreaseKey(heap []int, i, key int) {
+	//hope that the user has some sho,oor so that the key is greater than heap[i]
+	heap[i] = key
+	for i > 0 && heap[i] > heap[i/2] {
+		heap[i], heap[(i-1)/2] = heap[(i-1)/2], heap[i]
+		i = (i - 1) / 2
+	}
+}

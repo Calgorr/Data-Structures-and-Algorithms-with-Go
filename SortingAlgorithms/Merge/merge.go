@@ -12,7 +12,7 @@ func MergeSort(nums []int) []int {
 		return nums
 	}
 	arr1 := nums[:len(nums)/2]
-	arr2 := nums[len(nums)/2+1:]
+	arr2 := nums[len(nums)/2:]
 
 	arr1 = MergeSort(arr1)
 	arr2 = MergeSort(arr2)

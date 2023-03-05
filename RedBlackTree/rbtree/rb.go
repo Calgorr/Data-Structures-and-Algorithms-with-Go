@@ -23,3 +23,18 @@ func (t *RB) LeftRotate(x *RB) {
 	x.parent=y
 
 }
+
+func (t *RB) Max(){
+	for ;t.rightChild!=nil; {
+		t = t.rightChild
+	}
+	return t.value
+}
+
+
+func (t *RB) Min(){
+	for ;t.leftChild!=nil; {
+		t = t.lefttChild
+	}
+	return t.value
+}

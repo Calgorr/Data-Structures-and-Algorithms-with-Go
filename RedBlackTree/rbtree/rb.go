@@ -2,8 +2,16 @@ package rbtree
 
 type RB struct {
 	leftChild, rightChild, parent, root *RB
-	color, value                        int //0 For Black and 1 for Red
+	value                               int
+	color                               Color
 }
+
+type Color int64
+
+const (
+	Black Color = 0
+	Red   Color = 1
+)
 
 func (t *RB) RB_Delete(z *RB) {
 	y := z
@@ -31,13 +39,20 @@ func (t *RB) RB_Delete(z *RB) {
 		y.leftChild.parent = y
 		y.color = z.color
 	}
-	if y_originalcolor == 0 {
+	if y_originalcolor == Black {
 		t.RB_DeleteFixUp(x)
 	}
 }
 
 func (t *RB) RB_DeleteFixUp(x *RB) {
+	for x != t.root && x.color == Black {
+		if x == x.parent.leftChild {
+			w := x.parent.rightChild
+			if w.color == Red {
 
+			}
+		}
+	}
 }
 
 func (t *RB) LeftRotate(x *RB) {

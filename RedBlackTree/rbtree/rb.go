@@ -5,6 +5,41 @@ type RB struct {
 	color, value                        int //0 For Black and 1 for Red
 }
 
+func (t *RB) RB_Delete(z *RB) {
+	y := z
+	y_originalcolor := y.color
+	var x *RB
+	if z.leftChild == nil {
+		x = z.rightChild
+		t.Transplant(z, z.rightChild)
+	} else if z.rightChild == nil {
+		x = z.leftChild
+		t.Transplant(z, z.leftChild)
+	} else {
+		y.value = z.rightChild.Min()
+		y_originalcolor = y.color
+		x = y.rightChild
+		if y.parent == z {
+			x.parent = z
+		} else {
+			t.Transplant(y, y.rightChild)
+			y.rightChild = z.rightChild
+			y.rightChild.parent = y
+		}
+		t.Transplant(z, y)
+		y.leftChild = z.leftChild
+		y.leftChild.parent = y
+		y.color = z.color
+	}
+	if y_originalcolor == 0 {
+		t.RB_DeleteFixUp(x)
+	}
+}
+
+func (t *RB) RB_DeleteFixUp(x *RB) {
+
+}
+
 func (t *RB) LeftRotate(x *RB) {
 	y := x.rightChild
 	x.rightChild = y.leftChild

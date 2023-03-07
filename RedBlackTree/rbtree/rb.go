@@ -9,8 +9,8 @@ type RB struct {
 type Color int64
 
 const (
-	Black Color = 0
-	Red   Color = 1
+	BLACK Color = 0
+	RED   Color = 1
 )
 
 func (t *RB) RB_Delete(z *RB) {
@@ -39,20 +39,62 @@ func (t *RB) RB_Delete(z *RB) {
 		y.leftChild.parent = y
 		y.color = z.color
 	}
-	if y_originalcolor == Black {
+	if y_originalcolor == BLACK {
 		t.RB_DeleteFixUp(x)
 	}
 }
 
 func (t *RB) RB_DeleteFixUp(x *RB) {
-	for x != t.root && x.color == Black {
+	for x != t.root && x.color == BLACK {
 		if x == x.parent.leftChild {
 			w := x.parent.rightChild
-			if w.color == Red {
-
+			if w.color == RED {
+				w.color = BLACK
+				x.parent.color = RED
+				t.LeftRotate(x.parent)
+				w = x.parent.rightChild
+			}
+			if w.leftChild.color == BLACK && w.rightChild.color == BLACK {
+				w.color = RED
+				x = x.parent
+			} else if w.rightChild.color == BLACK {
+				w.leftChild.color = BLACK
+				w.color = RED
+				t.RightRotate(w)
+				w = x.parent.rightChild
+			} else {
+				w.color = x.parent.color
+				x.parent.color = BLACK
+				w.rightChild.color = BLACK
+				t.LeftRotate(x.parent)
+				x = t.root
+			}
+		} else {
+			w := x.parent.leftChild
+			if w.color == RED {
+				w.color = BLACK
+				x.parent.color = RED
+				t.RightRotate(x.parent)
+				w = x.parent.leftChild
+			}
+			if w.rightChild.color == BLACK && w.leftChild.color == BLACK {
+				w.color = RED
+				x = x.parent
+			} else if w.leftChild.color == BLACK {
+				w.rightChild.color = BLACK
+				w.color = RED
+				t.LeftRotate(w)
+				w = x.parent.leftChild
+			} else {
+				w.color = x.parent.color
+				x.parent.color = BLACK
+				w.leftChild.color = BLACK
+				t.RightRotate(x.parent)
+				x = t.root
 			}
 		}
 	}
+	x.color = BLACK
 }
 
 func (t *RB) LeftRotate(x *RB) {

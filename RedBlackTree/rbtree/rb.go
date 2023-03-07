@@ -16,25 +16,24 @@ func (t *RB) LeftRotate(x *RB) {
 		t.root = y
 	} else if x == x.parent.leftChild {
 		x.parent.leftChild = y
-	} else _{
-		x.parent.rightChild=y
+	} else {
+		x.parent.rightChild = y
 	}
-	y.leftChild=x
-	x.parent=y
+	y.leftChild = x
+	x.parent = y
 
 }
 
-func (t *RB) Max(){
-	for ;t.rightChild!=nil; {
+func (t *RB) Max() int {
+	for t.rightChild != nil {
 		t = t.rightChild
 	}
 	return t.value
 }
 
-
-func (t *RB) Min(){
-	for ;t.leftChild!=nil; {
-		t = t.lefttChild
+func (t *RB) Min() int {
+	for t.leftChild != nil {
+		t = t.leftChild
 	}
 	return t.value
 }

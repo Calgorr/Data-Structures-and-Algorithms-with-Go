@@ -43,6 +43,17 @@ func (t *RB) RightRotate(x *RB) {
 
 }
 
+func (t *RB) Transplant(u, v *RB) {
+	if u.parent == nil {
+		t.root = v
+	} else if u.parent.leftChild == u {
+		u.parent.leftChild = v
+	} else {
+		u.parent.rightChild = v
+	}
+	v.parent = u.parent
+}
+
 func (t *RB) Max() int {
 	for t.rightChild != nil {
 		t = t.rightChild
